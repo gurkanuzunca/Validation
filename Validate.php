@@ -26,10 +26,16 @@ class Validate
      * Kurallanı ayrı dosyadan yükler.
      *
      * @param $path
+     * @throws Exception
      */
     public function loadRulesFile($path)
     {
-        $this->rules = include($path . '.php');
+        if (file_exists($path . '.php')) {
+            $this->rules = include($path . '.php');
+        } else {
+            throw new Exception('Dosya bulunamadı.');
+        }
+
     }
 
 
@@ -77,14 +83,20 @@ class Validate
      * @param string $rule
      * @param array $parameters
      * @return bool
+     * @throws BadMethodCallException
      */
     private function validate($name, $rule, array $parameters)
     {
-        if (! ValidateRule::$rule($this->getValue($name), $parameters)) {
-            $this->addError($name, $parameters);
+        if (method_exists('ValidationRule', $rule)) {
+            if (! ValidateRule::$rule($this->getValue($name), $parameters)) {
+                $this->addError($name, $parameters);
 
-            return false;
+                return false;
+            }
+        } else {
+            throw new BadMethodCallException('Kural hatalı.');
         }
+
         return true;
     }
 
