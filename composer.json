@@ -1,6 +1,7 @@
 {
     "name": "gurkanuzunca/validation",
     "description": "Doğrulama sınıfı",
+    "license": "MIT",
     "authors": [
         {
             "name": "Gürkan Uzunca",
