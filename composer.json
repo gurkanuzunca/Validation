@@ -1,0 +1,14 @@
+{
+    "name": "gurkanuzunca/Validation",
+    "description": "Doğrulama sınıfı",
+    "authors": [
+        {
+            "name": "Gürkan Uzunca",
+            "email": "selam@gurkanuzunca.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
